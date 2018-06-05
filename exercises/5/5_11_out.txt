@@ -1,0 +1,9 @@
+aCnt: 26590
+eCnt: 39915
+iCnt: 20815
+oCnt: 26141
+uCnt: 9755
+spaceCnt: 75434
+tableCnt: 1
+newlineCnt: 3033
+time used: 0.085s

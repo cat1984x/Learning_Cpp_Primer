@@ -1,0 +1,6 @@
+aCnt: 26590
+eCnt: 39915
+iCnt: 20815
+oCnt: 26141
+uCnt: 9755
+time used: 0.107s
