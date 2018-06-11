@@ -3,25 +3,34 @@
 #define SALES_DATA_H
 #include <string>
 
-struct Sales_data;
-std::istream &read(std::istream &is, Sales_data &item);
-
-struct Sales_data
+class Sales_data
 {
+	friend Sales_data add(const Sales_data &lhs, const Sales_data &rhs);
+	friend std::istream &read(std::istream &is, Sales_data &item);
+	friend std::ostream &print(std::ostream &os, const Sales_data &item);
+
+public:
 	Sales_data() = default;
-	Sales_data(const std::string &s): bookNo(s) {}
 	Sales_data(const std::string &s, unsigned n, double p): 
 	bookNo(s), unit_sold(n), revenue(p*n) {}
-	Sales_data(std::istream &is) { read(is, *this); } //can't find read,must declaration first
+	Sales_data(std::istream &is);
+	Sales_data(const std::string &s): bookNo(s), 
+	unit_sold(0), revenue(0) {} 
 
 	std::string isbn() const {return bookNo;}
 	Sales_data &combine(const Sales_data &);
-	double agv_price() const;
 
+private:
+	double agv_price() const;
 	std::string bookNo;
 	unsigned unit_sold = 0;
 	double revenue = 0.0;
 };
+
+Sales_data::Sales_data(std::istream &is)
+{
+	read(is, *this);
+}
 
 Sales_data & Sales_data::combine(const Sales_data &rhs)
 {
@@ -30,7 +39,7 @@ Sales_data & Sales_data::combine(const Sales_data &rhs)
 	return *this;
 }
 
-double Sales_data::agv_price() const 
+inline double Sales_data::agv_price() const 
 {
 	if(unit_sold)
 		return revenue / unit_sold;
@@ -59,6 +68,7 @@ std::ostream &print(std::ostream &os, const Sales_data &item)
 	<< " " << item.agv_price();
 	return os;
 }
+
 
 #endif
 

@@ -1,26 +1,24 @@
-#include <iostream>
-#include "7_12_Sales_data.h"
-#include <string>
+#include "7_22_Person.h"
 
 using namespace std;
 
 int main()
 {
-	Sales_data a;
+	Person a;
 	cout << "a: ";
 	print(cout, a) << endl;
 
-	Sales_data b("b");
+	Person b("b");
 	cout << "b: ";
 	print(cout, b) << endl;
 
-	Sales_data c("c", 2, 20.0);
+	Person c("c", "Nanjing");
 	cout << "c: ";
 	print(cout, c) << endl;
 
-	Sales_data d(cin);
+	Person d(cin);
 	cout << "d: ";
 	print(cout, d) << endl;
 
 	return 0;
-} 
+}
