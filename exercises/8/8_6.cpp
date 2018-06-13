@@ -1,16 +1,29 @@
 #include <iostream>
-#include "7_6_Sales_data.h"
+#include <fstream>
+#include "8_6_Sales_data.h"
 #include <string>
 
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
+	if(argc != 2)
+	{
+		cout << "Please input file name." << endl;
+		return -1;
+	}
+
+	ifstream in(argv[1]);
+	if(!in)
+	{
+		cout << "Can't open file." << endl;
+	}
+
 	Sales_data total;
-	if(read(cin, total))
+	if(read(in, total))
 	{
 		Sales_data trans;
-		while(read(cin, trans))
+		while(read(in, trans))
 		{
 			if(total.isbn() == trans.isbn())
 			{
