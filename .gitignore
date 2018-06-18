@@ -33,4 +33,6 @@
 
 #user
 *.user
+*.txt
+./book/*
 
