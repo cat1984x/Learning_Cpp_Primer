@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void add_families(map<string, vector<pair<string, int>>> &families, const string &family)
+void add_families(map<string, vector<pair<string, string>>> &families, const string &family)
 {
 	if(families.find(family) == families.end())
 	{
@@ -25,7 +25,7 @@ void add_child(map<string, vector<pair<string, string>>> &families,
 
 int main()
 {
-	map<string, vector<pair<string, int>>> families;
+	map<string, vector<pair<string, string>>> families;
 
 	add_families(families, "Chen");
 	add_families(families, "Chen");
@@ -34,13 +34,12 @@ int main()
 	add_child(families, "Chen", "XiaoMi" ,"2016");
 	add_child(families, "Zhou", "Mumu" ,"1991");
 
-	// for(auto i : families)
-	// {
-	// 	cout << "family: " << i.first << " child: ";
-	// 	for(auto j : i.second)
-	// 		cout << j << " ";
-	// 	cout << endl;
-	// }
+	for(auto i : families)
+	{
+		cout << "family: " << i.first << " child: ";
+		for(auto j : i.second)
+			cout << j.first << " birthday: " << j.second << endl;
+	}
 
 	return 0;
 }
