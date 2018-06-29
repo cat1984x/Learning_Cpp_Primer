@@ -39,7 +39,7 @@ public:
 	friend void print(ostream &out, QueryResult &qr);
 	QueryResult();
 	QueryResult(string &s_query, TextQuery &tq) :
-		s(s_query), content(tq.content), word_map(tq.word_map){}
+	s(s_query), content(tq.content), word_map(tq.word_map){}
 private:
 	string s;
 	shared_ptr<vector<string>> content;
@@ -72,11 +72,17 @@ QueryResult TextQuery::query(string s_query)
 
 void print(ostream &out, QueryResult &qr)
 {
-	int nums = (*qr.word_map)[qr.s].size();
-	out << qr.s << " occurs " << nums << " times" << endl;
-	for(auto line_num : (*qr.word_map)[qr.s])
+	auto loc = (*qr.word_map).find(qr.s);
+	if(loc == (*qr.word_map).end())
+		out << qr.s << " don't occur in file." << endl;
+	else
 	{
-		cout << "    (line " << line_num << ")" << (*qr.content)[line_num - 1] << endl;
+		int nums = (*qr.word_map)[qr.s].size();
+		out << qr.s << " occurs " << nums << " times" << endl;
+		for(auto line_num : (*qr.word_map)[qr.s])
+		{
+			out << "    (line " << line_num << ")" << (*qr.content)[line_num - 1] << endl;
+		}
 	}
 }
 
